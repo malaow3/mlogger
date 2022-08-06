@@ -6,6 +6,7 @@ def init_logger():
     logger.remove()
     logger.add(
         sys.stdout,
-        format='<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level}</level> | {function} - {file}:{line} - {message}',  # noqa
-        level='INFO')
+        format="<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level}</level> | {function} - {file}:{line} - {message}\t{extra}",  # noqa
+        level="INFO",
+    )
     return logger
