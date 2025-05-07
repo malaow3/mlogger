@@ -1,15 +1,15 @@
-from loguru import logger
-import sys
-
-
 import logging
+import sys
+from typing import cast
+
+from loguru import logger
 from pylogrus import PyLogrus, TextFormatter
 
 
-def get_logger():
+def get_logger() -> PyLogrus:
     logging.setLoggerClass(PyLogrus)
 
-    logger = logging.getLogger(__name__)  # type: PyLogrus
+    logger: PyLogrus = cast(PyLogrus, logging.getLogger(__name__))
     logger.setLevel(logging.DEBUG)
 
     # get file line and function
@@ -34,7 +34,7 @@ def init_logger(use_extra: bool = False):
     fmt = "<green>{time:YYYY-MM-DD HH:mm:ss}</green> | <level>{level}</level> | {function} - {file}:{line} - {message}"
     if use_extra:
         fmt = fmt + " - {extra}"
-    logger.add(
+    _ = logger.add(
         sys.stdout,
         format=fmt,  # noqa
         level="INFO",
